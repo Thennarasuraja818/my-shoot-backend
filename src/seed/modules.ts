@@ -8,51 +8,15 @@ export async function seedDefaultModules() {
   await moduleRepo.deleteMany({});
 
   const modules = [
-    // Main
     "Dashboard",
     "Website",
-    "Blog",
-
-    // Website
     "Banner",
-
-    // Blog
-    "Blog List",
-    "Add Blog",
-
-    // Master Creation
     "Category",
     "Sub Category",
-    "Brands",
-    "Attributes",
-    "Unit",
-    "Tax",
-    "Products",
-    "Coupons",
-
-    // Orders
-    "Customer Orders",
-    "Cancelled Orders",
-    "Return Orders",
-    "Orders Feedback",
-
-    // Users
     "User List",
-    "Role & Permission",
-    "Activity Logs",
     "Customer List",
-    "Notify Me",
-
-    // Payments
-    "Payment History",
-    "Manual Payment",
-
-    // Inventory
-    "Inventory List",
-    "Add Stock",
-    "Customer Reports",
-    "Payment Reports",
-    "Stock Reports"
+    "Role & Permission",
+    "Activity Logs"
   ];
 
   const moduleEntities = modules.map((name) => {
@@ -65,5 +29,5 @@ export async function seedDefaultModules() {
 
   await moduleRepo.save(moduleEntities);
 
-  console.log("🌟 Default Modules seeded successfully");
+  console.log("🌟 Modules seeded successfully");
 }
