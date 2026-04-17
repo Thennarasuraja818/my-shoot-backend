@@ -54,43 +54,43 @@ export class AuthController {
         @Res() res: Response
     ) {
         try {
-            const { phoneNumber, pin } = body;
+            const { email, password } = body;
 
-            if (!phoneNumber) {
+            if (!email) {
                 return response(
                     res,
                     StatusCodes.BAD_REQUEST,
-                    "phoneNumber is required"
+                    "email is required"
                 );
             }
-            if (!pin) {
+            if (!password) {
                 return response(
                     res,
                     StatusCodes.BAD_REQUEST,
-                    "pin is required"
+                    "password is required"
                 );
             }
 
             const admin =
                 (await this.adminRepo.findOne({
-                    where: { phoneNumber, isDelete: 0 }
+                    where: { email, isDelete: 0 }
                 })) ||
                 (await this.adminUserRepo.findOne({
-                    where: { phoneNumber, isDelete: 0 }
+                    where: { email, isDelete: 0 }
                 }));
 
             if (!admin) {
-                return response(res, StatusCodes.UNAUTHORIZED, "Invalid mobile number");
+                return response(res, StatusCodes.UNAUTHORIZED, "Invalid email or password");
             }
 
             if (admin.isActive !== 1) {
                 return response(res, StatusCodes.FORBIDDEN, "Account is inactive. Please contact admin.");
             }
 
-            // 2️⃣ Validate PIN
-            const validPin = await bcrypt.compare(pin, admin.pin);
-            if (!validPin) {
-                return response(res, StatusCodes.UNAUTHORIZED, "Invalid PIN");
+            // 2️⃣ Validate Password
+            const validPassword = await bcrypt.compare(password, admin.password);
+            if (!validPassword) {
+                return response(res, StatusCodes.UNAUTHORIZED, "Invalid email or password");
             }
 
             // 3️⃣ IP Address
@@ -446,8 +446,8 @@ export class AuthController {
                 return response(res, StatusCodes.NOT_FOUND, "User not found");
             }
 
-            const hashedPin = await bcrypt.hash(newPin, 10);
-            admin.pin = hashedPin;
+            const hashedPassword = await bcrypt.hash(newPin, 10);
+            admin.password = hashedPassword;
 
             if (admin instanceof Admin) {
                 await this.adminRepo.save(admin);

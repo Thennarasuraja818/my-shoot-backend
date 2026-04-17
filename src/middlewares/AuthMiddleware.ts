@@ -49,6 +49,7 @@ export class AuthMiddleware implements ExpressMiddlewareInterface {
             const userId = decoded.id;
             const userType = decoded.userType;
             let user: any = null;
+            console.log("decoded: ", decoded);
 
             if (userType === "ADMIN") {
                 user = await AppDataSource.getMongoRepository(Admin).findOneBy({

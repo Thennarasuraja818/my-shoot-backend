@@ -12,11 +12,10 @@ export async function seedDefaultAdmin() {
   }
 
   const defaultAdmin = new Admin();
-  defaultAdmin.name = "You Leggings Admin";
-  defaultAdmin.email = "youleggingsadmin@gmail.com";
-  defaultAdmin.companyName = "You Leggings";
+  defaultAdmin.name = "MyShoot Admin";
+  defaultAdmin.email = "admin@myshoot.com";
   defaultAdmin.phoneNumber = "9988776655";
-  defaultAdmin.pin = await bcrypt.hash("2026", 10);
+  defaultAdmin.password = await bcrypt.hash("admin123", 10);
   defaultAdmin.role = "ADMIN";
   defaultAdmin.isActive = 1;
   defaultAdmin.isDelete = 0;

@@ -41,7 +41,7 @@ export class AdminUserController {
         @Res() res: Response
     ) {
         try {
-            const { phoneNumber, email, pin, name, profileImage, roleId, isActive } = body;
+            const { phoneNumber, email, password, name, profileImage, roleId, isActive } = body;
 
             // 🔹 Check if phone number already exists in AdminUser or Admin
             const existingAdminUser = await this.adminUserRepository.findOneBy({
@@ -67,7 +67,7 @@ export class AdminUserController {
             adminUser.profileImage = profileImage;
             adminUser.email = email || "";
             adminUser.phoneNumber = phoneNumber;
-            adminUser.pin = await bcrypt.hash(pin, 10);
+            adminUser.password = await bcrypt.hash(password, 10);
             adminUser.roleId = new ObjectId(roleId);
             adminUser.createdBy = new ObjectId(req.user.userId);
             adminUser.updatedBy = new ObjectId(req.user.userId);
@@ -290,8 +290,8 @@ export class AdminUserController {
             if (body.name) adminUser.name = body.name;
             if (body.profileImage) adminUser.profileImage = body.profileImage;
             if (body.email !== undefined) adminUser.email = body.email;
-            if (body.pin) {
-                adminUser.pin = await bcrypt.hash(body.pin, 10);
+            if (body.password) {
+                adminUser.password = await bcrypt.hash(body.password, 10);
             }
             if (body.roleId) adminUser.roleId = new ObjectId(body.roleId);
             if (body.isActive !== undefined) adminUser.isActive = body.isActive;

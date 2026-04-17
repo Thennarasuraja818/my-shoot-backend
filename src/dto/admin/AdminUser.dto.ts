@@ -29,9 +29,8 @@ export class CreateAdminUserDto {
     @IsNotEmpty()
     phoneNumber: string;
 
-    @Length(4, 6)
     @IsString()
-    pin: string;
+    password: string;
 
     @IsMongoId()
     roleId: string;
@@ -63,8 +62,7 @@ export class UpdateAdminUserDto {
 
     @IsOptional()
     @IsString()
-    @Length(4, 6)
-    pin?: string;
+    password?: string;
 
     @IsOptional()
     @IsMongoId()

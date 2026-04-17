@@ -13,13 +13,10 @@ export class Admin {
     email: string
 
     @Column()
-    companyName: string
-
-    @Column()
     phoneNumber: string
 
     @Column()
-    pin: string
+    password: string
 
     @Column()
     role: string

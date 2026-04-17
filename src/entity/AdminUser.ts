@@ -23,7 +23,7 @@ export class AdminUser {
     phoneNumber: string
 
     @Column()
-    pin: string
+    password: string
 
     @Column()
     roleId: ObjectId
