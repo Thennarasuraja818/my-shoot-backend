@@ -25,15 +25,6 @@ export class Category {
     @Column({ nullable: true })
     status: boolean;
 
-    @Column({ nullable: true })
-    metaTitle: string;
-
-    @Column({ nullable: true })
-    metaKeywords: string;
-
-    @Column({ nullable: true })
-    metaDescription: string;
-
     @Column({ default: 0 })
     isDelete: number;
 

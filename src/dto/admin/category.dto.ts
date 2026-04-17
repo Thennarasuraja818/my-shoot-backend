@@ -3,7 +3,6 @@ import { Type } from "class-transformer";
 
 export class CreateCategoryDto {
     @IsString()
-    @IsOptional()
     name?: string;
 
     @IsString()
@@ -14,7 +13,7 @@ export class CreateCategoryDto {
     @IsOptional()
     description?: string;
 
-    @IsOptional()
+    // @IsOptional()
     image?: {
         fileName?: string;
         path?: string;
@@ -24,18 +23,6 @@ export class CreateCategoryDto {
     @IsBoolean()
     @IsOptional()
     status?: boolean;
-
-    @IsString()
-    @IsOptional()
-    metaTitle?: string;
-
-    @IsString()
-    @IsOptional()
-    metaKeywords?: string;
-
-    @IsString()
-    @IsOptional()
-    metaDescription?: string;
 
     @IsNumber()
     @Min(1)
@@ -45,7 +32,6 @@ export class CreateCategoryDto {
 }
 export class UpdateCategoryDto {
     @IsString()
-    @IsOptional()
     name?: string;
 
     @IsString()
@@ -66,18 +52,6 @@ export class UpdateCategoryDto {
     @IsBoolean()
     @IsOptional()
     status?: boolean;
-
-    @IsString()
-    @IsOptional()
-    metaTitle?: string;
-
-    @IsString()
-    @IsOptional()
-    metaKeywords?: string;
-
-    @IsString()
-    @IsOptional()
-    metaDescription?: string;
 
     @IsNumber()
     @Min(1)

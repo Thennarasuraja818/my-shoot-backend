@@ -41,9 +41,6 @@ export class BannerController {
     try {
       const banner = new Banner();
       banner.title = body.title;
-      banner.pageName = body.pageName;
-      banner.description = body.description;
-      banner.link = body.link;
       banner.image = body.image;
       banner.status = body.status ?? true;
       banner.isDelete = 0;
@@ -73,16 +70,16 @@ export class BannerController {
     try {
       const banner = await this.repo.findOneBy({ _id: new ObjectId(id) });
       if (!banner) return response(res, StatusCodes.NOT_FOUND, "Banner not found");
+      console.log("Banner found", banner);
+      console.log("Body", body);
 
-      banner.title = body.title;
-      banner.pageName = body.pageName;
-      banner.description = body.description;
-      banner.link = body.link;
-      
-      if (body.image !== undefined) {
-          banner.image = body.image;
+      if (body.title !== undefined) {
+        banner.title = body.title;
       }
-      
+      if (body.image !== undefined) {
+        banner.image = body.image as any;
+      }
+
       banner.status = body.status ?? banner.status;
       banner.updatedBy = new ObjectId(req.user.userId);
 
@@ -119,17 +116,17 @@ export class BannerController {
 
   @Patch("/status/:id")
   async toggleStatus(@Param("id") id: string, @Res() res: Response) {
-      try {
-          const banner = await this.repo.findOneBy({ _id: new ObjectId(id) });
-          if (!banner) return response(res, StatusCodes.NOT_FOUND, "Banner not found");
+    try {
+      const banner = await this.repo.findOneBy({ _id: new ObjectId(id) });
+      if (!banner) return response(res, StatusCodes.NOT_FOUND, "Banner not found");
 
-          banner.status = !banner.status;
-          await this.repo.save(banner);
+      banner.status = !banner.status;
+      await this.repo.save(banner);
 
-          return response(res, StatusCodes.OK, "Status updated successfully", banner);
-      } catch (error) {
-          return handleErrorResponse(error, res);
-      }
+      return response(res, StatusCodes.OK, "Status updated successfully", banner);
+    } catch (error) {
+      return handleErrorResponse(error, res);
+    }
   }
 
   @Delete("/:id")

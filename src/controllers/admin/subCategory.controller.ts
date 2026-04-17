@@ -41,9 +41,7 @@ export class SubCategoryController {
             if (body.description !== undefined) doc.description = body.description;
             if (body.image !== undefined) doc.image = body.image;
             if (body.status !== undefined) doc.status = body.status;
-            if (body.metaTitle !== undefined) doc.metaTitle = body.metaTitle;
-            if (body.metaKeywords !== undefined) doc.metaKeywords = body.metaKeywords;
-            if (body.metaDescription !== undefined) doc.metaDescription = body.metaDescription;
+
 
             if (body.displayOrder !== undefined && body.displayOrder > 0) {
                 // 1. Check if previous orders exist (Global across all categories)
@@ -120,9 +118,7 @@ export class SubCategoryController {
             if (body.description !== undefined) doc.description = body.description;
             if (body.image !== undefined) doc.image = body.image;
             if (body.status !== undefined) doc.status = body.status;
-            if (body.metaTitle !== undefined) doc.metaTitle = body.metaTitle;
-            if (body.metaKeywords !== undefined) doc.metaKeywords = body.metaKeywords;
-            if (body.metaDescription !== undefined) doc.metaDescription = body.metaDescription;
+
 
             if (body.displayOrder !== undefined && body.displayOrder !== doc.displayOrder && body.displayOrder > 0) {
                 // 1. Check if previous orders exist (Global)

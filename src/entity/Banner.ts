@@ -15,21 +15,12 @@ export class Banner {
   @Column({ nullable: true })
   title: string;
 
-  @Column({ nullable: true })
-  description: string;
-
-  @Column({ nullable: true })
-  link: string;
-
   @Column("simple-json", { nullable: true })
-  image?: {
+  image: {
     fileName?: string;
     path?: string;
     originalName?: string;
   };
-
-  @Column({ nullable: true })
-  pageName: string;
 
   @Column({ default: true })
   status: boolean;
