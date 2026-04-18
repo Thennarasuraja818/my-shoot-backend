@@ -117,6 +117,7 @@ export class BannerController {
   @Patch("/status/:id")
   async toggleStatus(@Param("id") id: string, @Res() res: Response) {
     try {
+      //  const banner = await this.repo.findOneBy({ _id: new ObjectId(id) });
       const banner = await this.repo.findOneBy({ _id: new ObjectId(id) });
       if (!banner) return response(res, StatusCodes.NOT_FOUND, "Banner not found");
 
